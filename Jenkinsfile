@@ -1,10 +1,19 @@
 pipeline {
-    agent any 
-    stages {
-        stage('Stage 1') {
-            steps {
-                echo 'Hello world!' 
-            }
-        }
+  agent any
+
+  parameters {
+    choice(
+      description: 'Run what environment?',
+      name: 'environment',
+      choices: ['PRE', 'PRO']
+    )
+  }
+
+  stages {
+    stage("Wat") {
+      steps {
+        echo "selectedEnvironment: ${params.environment}"
+      }
     }
+  }
 }

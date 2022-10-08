@@ -31,8 +31,8 @@ pipeline {
   stages {
     stage("Wat") {
       when {
+        params.environment == "Prod"
         expression {
-          params.environment == "Prod"
           environment dpath: '/data/deploy/${environment}'
         }
       }

@@ -18,15 +18,15 @@ pipeline {
       choices: ['Pre', 'Prod']
     )
   }
-
-  stages {
-    stage("Wat") {
-
-      steps {
         if(${params.environment}.equals("Prod"))
           environment="Production"
         else if(${params.environment}.equals("Pre"))
           environment="Prerelease"
+  stages {
+    stage("Wat") {
+
+      steps {
+
         echo "selectedEnvironment: ${environment}"
       }
     }

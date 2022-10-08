@@ -15,7 +15,16 @@ pipeline {
       description: 'Run what environment?',
       name: 'environment',
       choices: ['Staging', 'Prod']
+    ),
+    choice(
+      description: 'Run what package?',
+      name: 'package',
+      choices: ['biz', 'gateway']
     )
+  }
+
+  environment {
+    dpath=''
   }
 
   stages {

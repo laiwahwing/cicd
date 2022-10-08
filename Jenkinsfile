@@ -24,15 +24,15 @@ pipeline {
         script {
           if('${params.environment}' =="Prod"){
             environment="Production"
-            path='/data/deploy/${environment}'
+            dpath='/data/deploy/${environment}'
           }
           if('${params.environment}' == "Pre"){
             environment="Prerelease"
-            path='/data/deploy/${environment}'
+            dpath='/data/deploy/${environment}'
           }
         }
         echo "selectedEnvironment: ${environment}"
-        echo "selected path: ${path}"
+        echo "selected path: ${dpath}"
       }
     }
   }

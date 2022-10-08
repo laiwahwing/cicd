@@ -33,7 +33,6 @@ pipeline {
       when {
         expression {
           params.environment "Prod"
-          environment dpath: '/data/deploy/${environment}'
         }
       }
       steps {

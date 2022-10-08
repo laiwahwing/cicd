@@ -3,7 +3,7 @@ pipeline {
 
   options {
     timestamps()
-    buildDiscarder()
+    buildDiscarder(logRotator(numToKeepStr: '30'))
     ansiColor('xterm')
   }
 

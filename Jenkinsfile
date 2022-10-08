@@ -10,6 +10,7 @@ pipeline {
         )
   }
 
+  def dpath
   parameters {
     choice(
       description: 'Run what environment?',
@@ -31,11 +32,11 @@ pipeline {
     stage("Wat") {
       steps {
         script {
-          if('${params.environment}' =="Prod"){
+          if(params.environment =="Prod"){
             environment="Production"
             dpath='/data/deploy/${environment}'
           }
-          if('${params.environment}' == "Staging"){
+          if(params.environment == "Staging"){
             environment="Prerelease"
             dpath='/data/deploy/${environment}'
           }

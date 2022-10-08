@@ -10,7 +10,7 @@ pipeline {
         )
   }
 
-  def dpath
+  def dpath = ''
   parameters {
     choice(
       description: 'Run what environment?',

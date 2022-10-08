@@ -20,12 +20,12 @@ pipeline {
     choice(
       description: 'Run what package?',
       name: 'package',
-      choices: ['biz', 'gateway']
+      choices: ['biz', 'gateway', 'im']
     )
   }
 
   environment {
-    dpath=''
+    dpath='1'
   }
 
   stages {

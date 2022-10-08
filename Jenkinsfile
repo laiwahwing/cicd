@@ -14,7 +14,7 @@ pipeline {
     choice(
       description: 'Run what environment?',
       name: 'environment',
-      choices: ['Pre', 'Prod']
+      choices: ['Staging', 'Prod']
     )
   }
 
@@ -26,7 +26,7 @@ pipeline {
             environment="Production"
             dpath='/data/deploy/${environment}'
           }
-          if('${params.environment}' == "Pre"){
+          if('${params.environment}' == "Staging"){
             environment="Prerelease"
             dpath='/data/deploy/${environment}'
           }

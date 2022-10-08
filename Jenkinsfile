@@ -32,14 +32,14 @@ pipeline {
     stage("Wat") {
       steps {
         script {
-          def dpath = ""
+          def dpath = "2"
           if(params.environment =="Prod"){
             environment="Production"
-            dpath='/data/deploy/${environment}'
+            dpath="/data/deploy/${environment}"
           }
           if(params.environment == "Staging"){
             environment="Prerelease"
-            dpath='/data/deploy/${environment}'
+            dpath="/data/deploy/${environment}"
           }
         }
         echo "selectedEnvironment: ${environment}"

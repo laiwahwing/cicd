@@ -1,18 +1,27 @@
 pipeline {
   agent any
 
+  options {
+    timestamps()
+    buildDiscarder()
+    ansiColor('xterm')
+  }
+
   parameters {
     choice(
       description: 'Run what environment?',
       name: 'environment',
-      choices: ['PRE', 'PRO']
+      choices: ['Pre', 'Prod']
     )
   }
 
   stages {
     stage("Wat") {
       steps {
-        echo "selectedEnvironment: ${params.environment}"
+        if(environment.equals("Prod"))
+          echo "selectedEnvironment: ${params.environment}"
+        else if(environment.equals("Pre"))
+          echo "selectedEnvironment: ${params.environment}"
       }
     }
   }

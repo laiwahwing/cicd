@@ -22,10 +22,10 @@ pipeline {
     stage("Wat") {
       steps {
         script {
-          if(${params.environment} =="Prod"){
+          if('${params.environment}' =="Prod"){
             environment="Production"
           }
-          if(${params.environment} == "Pre"){
+          if('${params.environment}' == "Pre"){
             environment="Prerelease"
           }
         }

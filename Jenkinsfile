@@ -2,9 +2,12 @@ pipeline {
   agent any
 
   options {
-    timestamps()
-    buildDiscarder(logRotator(numToKeepStr: '30'))
-    ansiColor('xterm')
+    buildDiscarder logRotator(
+      artifactDaysToKeepStr: "30",
+            artifactNumToKeepStr: "100",
+            daysToKeepStr: "30",
+            numToKeepStr: "50"
+        )
   }
 
   parameters {

@@ -2,6 +2,7 @@ pipeline {
   agent any
 
   options {
+    timestamps()
     buildDiscarder logRotator(
       artifactDaysToKeepStr: "30",
             artifactNumToKeepStr: "100",
@@ -20,11 +21,12 @@ pipeline {
 
   stages {
     stage("Wat") {
+      if(${params.environment}.equals("Prod"))
+        environment="Production"
+      else if(${params.environment}.equals("Pre"))
+        environment="Prerelease"
       steps {
-        if(environment.equals("Prod"))
-          echo "selectedEnvironment: ${params.environment}"
-        else if(environment.equals("Pre"))
-          echo "selectedEnvironment: ${params.environment}"
+        echo "selectedEnvironment: ${environment}"
       }
     }
   }

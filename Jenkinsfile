@@ -20,14 +20,13 @@ pipeline {
 
   stages {
     stage("Wat") {
+      steps {
         if(${params.environment} =="Prod"){
           environment="Production"
         }
         else if(${params.environment} == "Pre"){
           environment="Prerelease"
         }
-      steps {
-
         echo "selectedEnvironment: ${environment}"
       }
     }

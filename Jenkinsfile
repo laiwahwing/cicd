@@ -24,7 +24,7 @@ pipeline {
         if(${params.environment} =="Prod"){
           environment="Production"
         }
-        else if(${params.environment} == "Pre"){
+        if(${params.environment} == "Pre"){
           environment="Prerelease"
         }
         echo "selectedEnvironment: ${environment}"

@@ -30,10 +30,15 @@ pipeline {
 
   stages {
     stage("Wat") {
+      when {
+        expression {
+          params.environment == "Prod"
+          environment dpath: '/data/deploy/${environment}'
+        }
+      }
       steps {
         script {
-          def dpath = "2"
-          if(params.environment =="Prod"){
+          if(params.environment == "Prod"){
             environment="Production"
             dpath="/data/deploy/${environment}"
             return dpath

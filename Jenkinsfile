@@ -22,6 +22,23 @@ pipeline {
       name: 'package',
       choices: ['biz', 'gateway', 'im']
     )
+    booleanParam(
+      defaultValue: true, 
+      description: '', 
+      name: 'BOOLEAN'
+    )
+    text(
+      defaultValue: '''
+      this is a multi-line 
+      string parameter example
+      ''', 
+        name: 'MULTI-LINE-STRING'
+    )
+    string(
+      defaultValue: 'where\'s my pupet', 
+      name: 'gongzai', 
+      trim: true
+    )
   }
 
   environment {

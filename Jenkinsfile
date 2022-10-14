@@ -74,7 +74,7 @@ pipeline {
       }
       steps {
         echo "selectedEnvironment: ${environment}"
-        echo "Staging Build: selectedLinestring: ${params[MULTI-LINE-STRING]}"
+        echo "Staging Build: selectedLinestring: ${params['MULTI-LINE-STRING']}"
       }
     }
   }

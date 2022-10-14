@@ -70,7 +70,7 @@ pipeline {
     }
     stage("Deploy") {
       steps {
-        echo "selectedLinestring: ${MULTI-LINE-STRING}"
+        echo "selectedLinestring: ${params.MULTI-LINE-STRING}"
       }
     }
   }

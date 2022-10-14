@@ -64,8 +64,8 @@ pipeline {
     }
     stage("Build") {
       steps {
-        echo "selectedEnvironment: ${environment}\n\
-            selectedPath: ${dpath}"
+        echo "selectedEnvironment: ${environment}"
+        echo "selectedPath: ${dpath}"
       }
     }
     stage("DeployStaging") {
@@ -73,7 +73,8 @@ pipeline {
         environment name: 'environment', value: 'Prerelease'
       }
       steps {
-        echo "Staging Build: selectedLinestring: ${params.MULTI-LINE-STRING}"
+        echo "selectedEnvironment: ${environment}"
+        echo "Staging Build: selectedLinestring: ${params[MULTI-LINE-STRING]}"
       }
     }
   }
@@ -97,7 +98,7 @@ def getDynamicParameter() {
       ["service_name": "postgresql", "release_tag": "1.2.3"],
     ],
   ]
-  
+
   html_to_be_rendered = "<table><tr>"
   service_list = service_tier_map[tier]
   service_list.each { service ->
@@ -114,9 +115,9 @@ def getDynamicParameter() {
       </tr>
   """
   }
-  
-  
+
+
   html_to_be_rendered = "${html_to_be_rendered}</tr></table>"
-  
+
   return html_to_be_rendered
 }

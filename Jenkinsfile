@@ -47,11 +47,6 @@ pipeline {
 
   stages {
     stage("Wat") {
-      when {
-        expression {
-          params.environment "Prod"
-        }
-      }
       steps {
         script {
           if(params.environment == "Prod"){

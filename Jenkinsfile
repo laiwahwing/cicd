@@ -46,7 +46,7 @@ pipeline {
   }
 
   stages {
-    stage("Wat") {
+    stage("InitEnvironment") {
       steps {
         script {
           if(params.environment == "Prod"){
@@ -60,6 +60,17 @@ pipeline {
         }
         echo "selectedEnvironment: ${environment}"
         echo "selectedPath: ${dpath}"
+      }
+    }
+    stage("Build") {
+      steps {
+        echo "selectedEnvironment: ${environment}
+          selectedPath: ${dpath}"
+      }
+    }
+    stage("Deploy") {
+      steps {
+        echo "selectedLinestring: ${MULTI-LINE-STRING}
       }
     }
   }

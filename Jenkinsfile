@@ -57,11 +57,11 @@ pipeline {
           if(params.environment == "Staging"){
             environment="Prerelease"
             dpath="/data/deploy/${environment}"
-            return dpath
+            /*return dpath*/
           }
         }
         echo "selectedEnvironment: ${environment}"
-        echo "selected path: ${dpath}"
+        echo "selectedPath: ${dpath}"
       }
     }
   }

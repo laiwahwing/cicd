@@ -70,7 +70,7 @@ pipeline {
     }
     stage("DeployStaging") {
       when {
-        environment name: 'environment', value: 'Prerelease'
+        expression { environment=='Prerelease' }
       }
       steps {
         echo "selectedEnvironment: ${environment}"

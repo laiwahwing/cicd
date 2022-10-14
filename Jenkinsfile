@@ -64,8 +64,8 @@ pipeline {
     }
     stage("Build") {
       steps {
-        echo '''selectedEnvironment: ${environment}
-          selectedPath: ${dpath}'''
+        echo "selectedEnvironment: ${environment}\n\
+            selectedPath: ${dpath}"
       }
     }
     stage("Deploy") {

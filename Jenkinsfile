@@ -52,12 +52,10 @@ pipeline {
           if(params.environment == "Prod"){
             environment="Production"
             dpath="/data/deploy/${environment}"
-            return dpath
           }
           if(params.environment == "Staging"){
             environment="Prerelease"
             dpath="/data/deploy/${environment}"
-            /*return dpath*/
           }
         }
         echo "selectedEnvironment: ${environment}"

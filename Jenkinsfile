@@ -64,13 +64,13 @@ pipeline {
     }
     stage("Build") {
       steps {
-        echo '''selectedEnvironment: ${environment}
-          selectedPath: ${dpath}'''
+        echo "selectedEnvironment: ${environment}
+          selectedPath: ${dpath}"
       }
     }
     stage("Deploy") {
       steps {
-        echo "selectedLinestring: ${MULTI-LINE-STRING}
+        echo "selectedLinestring: ${MULTI-LINE-STRING}"
       }
     }
   }

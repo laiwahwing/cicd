@@ -19,8 +19,8 @@ pipeline {
     )
     choice(
       description: 'Run what package?',
-      name: 'package',
-      choices: ['biz', 'gateway', 'im']
+      name: 'tier',
+      choices: ['web', 'database', 'backend']
     )
     booleanParam(
       defaultValue: true, 
@@ -32,13 +32,14 @@ pipeline {
       this is a multi-line 
       string parameter example
       ''', 
-        name: 'MULTI-LINE-STRING'
+        name: 'multiline'
     )
     string(
       defaultValue: 'where\'s my pupet', 
       name: 'gongzai', 
       trim: true
     )
+    choice(name: 'ServiceTier', choices: ServiceTier, description="Select ServiceTier")
   }
 
   environment {
@@ -66,6 +67,8 @@ pipeline {
       steps {
         echo "selectedEnvironment: ${environment}"
         echo "selectedPath: ${dpath}"
+        echo "selectdBuildTier: ${service.service_name}"
+        echo "selectdTag: ${service.release_tag}"
       }
     }
     stage("DeployStaging") {
@@ -74,11 +77,14 @@ pipeline {
       }
       steps {
         echo "selectedEnvironment: ${environment}"
-        echo "Staging Build: selectedLinestring: ${params['MULTI-LINE-STRING']}"
+        echo "Staging Build: selectedLinestring: ${params.multiline}"
       }
     }
   }
 }
+
+
+def ServiceTier = getDynamicParameter().call()
 
 def getDynamicParameter() {
 

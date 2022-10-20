@@ -82,6 +82,7 @@ properties([
  ])
 ])
 
+def SDKVersions = listSDKVersions().call()
 
 pipeline {
   agent any
@@ -95,9 +96,6 @@ pipeline {
         )
   }
 
-  script {
-    def SDKVersions = listSDKVersions().call()
-  }
   parameters {
     choice(
       description: 'Run what environment?',
@@ -131,7 +129,7 @@ pipeline {
       name: 'gongzai', 
       trim: true
     )
-    choice(name: 'SDK', choices: SDKVersions, description="Select SDKVersions")
+    /* choice(name: 'SDK', choices: SDKVersions, description="Select SDKVersions") */
   }
 
   environment {

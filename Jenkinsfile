@@ -53,7 +53,7 @@ def listSDKVersions() {
   }
 }
 
-def SDKVersions = listSDKVersions().call()
+
 
 properties([
   parameters([
@@ -95,7 +95,9 @@ pipeline {
         )
   }
 
-
+  script {
+    def SDKVersions = listSDKVersions().call()
+  }
   parameters {
     choice(
       description: 'Run what environment?',
@@ -166,6 +168,8 @@ pipeline {
         expression { RunDeploy }
       }
       steps {
+        buildName '#${BUILD_NUMBER}-${environment}-${dpath}'
+        buildDescription "Executed @ ${NODE_NAME}"
         echo "selectedEnvironment: ${environment}"
         echo "Staging Build: selectedLinestring: ${params.multiline}"
       }

@@ -46,7 +46,7 @@ def getDynamicParameter() {
 
 def listSDKVersions() {
     return{
-        def folders = shell(script:"ls /tmp", returnStdout:true)
+        def folders = sh(script:"ls /tmp", returnStdout:true)
         return folders
     }
 }
@@ -108,7 +108,12 @@ pipeline {
     booleanParam(
       defaultValue: true, 
       description: '', 
-      name: 'BOOLEAN'
+      name: 'RunBuild'
+    )
+    booleanParam(
+      defaultValue: true, 
+      description: 'Run deploy or not?', 
+      name: 'RunDeploy'
     )
     text(
       defaultValue: '''
@@ -156,7 +161,7 @@ pipeline {
     }
     stage("DeployStaging") {
       when {
-        expression { environment=='Prerelease' }
+        expression { RunDeploy }
       }
       steps {
         echo "selectedEnvironment: ${environment}"

@@ -1,5 +1,5 @@
 
-def ServiceTier = getDynamicParameter().call()
+
 
 def getDynamicParameter() {
 

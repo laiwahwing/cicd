@@ -122,7 +122,7 @@ pipeline {
       name: 'gongzai', 
       trim: true
     )
-    choice(name: 'ServiceTier', choices: SDKVersions, description="Select ServiceTier")
+    choice(name: 'SDK', choices: SDKVersions, description="Select SDKVersions")
   }
 
   environment {

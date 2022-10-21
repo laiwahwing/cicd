@@ -46,20 +46,9 @@ def getDynamicParameter() {
 
 
 
-/*
+
 properties([
   parameters([
-    choice(description: 'Run what environment?', name: 'environment',choices: ['Staging', 'Prod']),
-    choice(description: 'Run what package?', name: 'tier',choices: ['web', 'database', 'backend']),
-    booleanParam(defaultValue: true, name: 'RunBuild', description: 'Run build or not',),
-    booleanParam(defaultValue: true, name: 'RunDeploy', description: 'Run deploy or not',  ),
-    text(
-      defaultValue: '''
-      this is a multi-line 
-      string parameter example
-      ''',  name: 'multiline'
-    ),
-    string(defaultValue: 'where\'s my pupet', name: 'gongzai', trim: true),
     [
       $class: 'ChoiceParameter',
       choiceType: 'PT_SINGLE_SELECT',
@@ -151,6 +140,7 @@ pipeline {
     choice(description: 'Run what package?', name: 'tier',choices: ['web', 'database', 'backend'])
     booleanParam(defaultValue: true, name: 'RunBuild', description: 'Run build or not')
     booleanParam(defaultValue: true, name: 'RunDeploy', description: 'Run deploy or not')
+/*
     activeChoiceParam('choice1') {
       description('select your choice')
       choiceType('PT_SINGLE_SELECT')
@@ -168,6 +158,7 @@ pipeline {
       }
       referencedParameter('choice1')
     }
+*/
   }
 
   environment {

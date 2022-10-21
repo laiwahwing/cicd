@@ -46,7 +46,7 @@ def getDynamicParameter() {
 
 
 
-
+/*
 properties([
   parameters([
     choice(description: 'Run what environment?', name: 'environment',choices: ['Staging', 'Prod']),
@@ -145,6 +145,29 @@ pipeline {
         )
   }
 
+  parameters {
+    choice(description: 'Run what environment?', name: 'environment',choices: ['Staging', 'Prod'])
+    choice(description: 'Run what package?', name: 'tier',choices: ['web', 'database', 'backend'])
+    booleanParam(defaultValue: true, name: 'RunBuild', description: 'Run build or not',)
+    booleanParam(defaultValue: true, name: 'RunDeploy', description: 'Run deploy or not',  )
+    activeChoiceParam('choice1') {
+      description('select your choice')
+      choiceType('RADIO')
+      groovyScript {
+          script('return["aaa","bbb"]')
+          fallbackScript('return ["error"]')
+      }
+    }
+    activeChoiceReactiveParam('choice2') {
+      description('select your choice')
+      choiceType('RADIO')
+      groovyScript {
+          script(' if(choice1.equals("aaa")) { return ["a", "b"] } else {return ["aaaaaa","fffffff"] } ')
+          fallbackScript('return ["error"]')
+      }
+      referencedParameter('choice1')
+    }
+  }
 
   environment {
     dpath='1'

@@ -55,7 +55,7 @@ properties([
       filterLength: 1,
       filterable: true,
       description: 'select the env name from the dropdown list',
-      name: 'Environment',
+      name: 'Env',
       randomName: 'choice-parameter-5631314439613978',
       script: [
         $class: 'GroovyScript',
@@ -79,7 +79,7 @@ properties([
       filterLength: 1,
       filterable: true,
       name: 'Host',
-      referencedParameters: 'Environment',
+      referencedParameters: 'Env',
       randomName: 'choice-parameter-5631314456178619', 
       script: [
         $class: 'GroovyScript',
@@ -87,22 +87,22 @@ properties([
           classpath: [], 
           sandbox: false, 
           script: 
-            'return[\'Could not get Environment from Env Param\']'
+            'return[\'Could not get Env from Env Param\']'
           ], 
         script: [
             classpath: [], 
             sandbox: false, 
             script: 
-              ''' if (Environment.equals("Dev")){
+              ''' if (Env.equals("Dev")){
                       return["devaaa001","devaaa002","devbbb001","devbbb002","devccc001","devccc002"]
                   }
-                  else if(Environment.equals("QA")){
+                  else if(Env.equals("QA")){
                       return["qaaaa001","qabbb002","qaccc003"]
                   }
-                  else if(Environment.equals("Stage")){
+                  else if(Env.equals("Stage")){
                       return["staaa001","stbbb002","stccc003"]
                   }
-                  else if(Environment.equals("Prod")){
+                  else if(Env.equals("Prod")){
                       return["praaa001","prbbb002","prccc003"]
                   }
               '''
@@ -140,6 +140,13 @@ pipeline {
     choice(description: 'Run what package?', name: 'tier',choices: ['web', 'database', 'backend'])
     booleanParam(defaultValue: true, name: 'RunBuild', description: 'Run build or not')
     booleanParam(defaultValue: true, name: 'RunDeploy', description: 'Run deploy or not')
+    text(
+      defaultValue: '''
+      this is a multi-line 
+      string parameter example
+      ''',  name: 'multiline'
+    ),
+    string(defaultValue: 'where\'s my pupet', name: 'gongzai', trim: true),
 /*
     activeChoiceParam('choice1') {
       description('select your choice')

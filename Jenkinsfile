@@ -137,6 +137,7 @@ pipeline {
   agent any
 
   options {
+    disableConcurrentBuilds()
     buildDiscarder logRotator(
       artifactDaysToKeepStr: "30",
             artifactNumToKeepStr: "100",
@@ -148,11 +149,11 @@ pipeline {
   parameters {
     choice(description: 'Run what environment?', name: 'environment',choices: ['Staging', 'Prod'])
     choice(description: 'Run what package?', name: 'tier',choices: ['web', 'database', 'backend'])
-    booleanParam(defaultValue: true, name: 'RunBuild', description: 'Run build or not',)
-    booleanParam(defaultValue: true, name: 'RunDeploy', description: 'Run deploy or not',  )
+    booleanParam(defaultValue: true, name: 'RunBuild', description: 'Run build or not')
+    booleanParam(defaultValue: true, name: 'RunDeploy', description: 'Run deploy or not')
     activeChoiceParam('choice1') {
       description('select your choice')
-      choiceType('RADIO')
+      choiceType('PT_SINGLE_SELECT')
       groovyScript {
           script('return["aaa","bbb"]')
           fallbackScript('return ["error"]')
@@ -160,9 +161,9 @@ pipeline {
     }
     activeChoiceReactiveParam('choice2') {
       description('select your choice')
-      choiceType('RADIO')
+      choiceType('PT_SINGLE_SELECT')
       groovyScript {
-          script(' if(choice1.equals("aaa")) { return ["a", "b"] } else {return ["aaaaaa","fffffff"] } ')
+          script(' if(choice1.equals("aaa")) { return ["a-branch", "a-target"] } else {return ["b-branch","b-target"] } ')
           fallbackScript('return ["error"]')
       }
       referencedParameter('choice1')

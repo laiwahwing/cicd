@@ -56,6 +56,17 @@ def listSDKVersions() {
 
 properties([
   parameters([
+    choice(description: 'Run what environment?', name: 'environment',choices: ['Staging', 'Prod']),
+    choice(description: 'Run what package?', name: 'tier',choices: ['web', 'database', 'backend']),
+    booleanParam(defaultValue: true,description: '',name: 'RunBuild'),
+    booleanParam(defaultValue: true, description: 'Run deploy or not?',  name: 'RunDeploy'),
+    text(
+      defaultValue: '''
+      this is a multi-line 
+      string parameter example
+      ''',  name: 'multiline'
+    ),
+    string(defaultValue: 'where\'s my pupet', name: 'gongzai', trim: true),
     [
       $class: 'ChoiceParameter',
       choiceType: 'PT_SINGLE_SELECT',
@@ -128,42 +139,8 @@ pipeline {
             numToKeepStr: "50"
         )
   }
-
-  parameters {
-    choice(
-      description: 'Run what environment?',
-      name: 'environment',
-      choices: ['Staging', 'Prod']
-    )
-    choice(
-      description: 'Run what package?',
-      name: 'tier',
-      choices: ['web', 'database', 'backend']
-    )
-    booleanParam(
-      defaultValue: true, 
-      description: '', 
-      name: 'RunBuild'
-    )
-    booleanParam(
-      defaultValue: true, 
-      description: 'Run deploy or not?', 
-      name: 'RunDeploy'
-    )
-    text(
-      defaultValue: '''
-      this is a multi-line 
-      string parameter example
-      ''', 
-        name: 'multiline'
-    )
-    string(
-      defaultValue: 'where\'s my pupet', 
-      name: 'gongzai', 
-      trim: true
-    )
     /* choice(name: 'SDK', choices: SDKVersions, description="Select SDKVersions") */
-  }
+
 
   environment {
     dpath='1'

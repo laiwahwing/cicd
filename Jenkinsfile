@@ -60,22 +60,56 @@ properties([
     [
       $class: 'ChoiceParameter',
       choiceType: 'PT_SINGLE_SELECT',
+      description: 'select the env name from the dropdown list'
       name: 'Environment',
       script: [
-        $class: 'ScriptlerScript',
-        scriptlerScriptId:'Environments.groovy'
+        $class: 'GroovyScript',
+        fallbackScript: [
+          classpath: [],
+          sanbox: false,
+          script:
+            'return[\'Could not get Env\']'
+        ],
+        script: [
+          classpath: [],
+          sanbox: false,
+          script:
+            'return["Dev", "QA", "Stage", "Prod"]'
+        ]
       ]
     ],
     [
       $class: 'CascadeChoiceParameter',
       choiceType: 'PT_SINGLE_SELECT',
+      filterLength: 1,
+      filterable: true,
       name: 'Host',
       referencedParameters: 'Environment',
       script: [
-        $class: 'ScriptlerScript',
-        scriptlerScriptId:'HostsInEnv.groovy',
-        parameters: [
-          [name:'Environment', value: '$Environment']
+        $class: 'GroovyScript',
+        fallbackScript: [
+          classpath: [], 
+          sandbox: false, 
+          script: 
+            'return[\'Could not get Environment from Env Param\']'
+          ], 
+        script: [
+            classpath: [], 
+            sandbox: false, 
+            script: 
+              ''' if (Env.equals("Dev")){
+                      return["devaaa001","devaaa002","devbbb001","devbbb002","devccc001","devccc002"]
+                  }
+                  else if(Env.equals("QA")){
+                      return["qaaaa001","qabbb002","qaccc003"]
+                  }
+                  else if(Env.equals("Stage")){
+                      return["staaa001","stbbb002","stccc003"]
+                  }
+                  else if(Env.equals("Prod")){
+                      return["praaa001","prbbb002","prccc003"]
+                  }
+              '''
         ]
       ]
    ]
@@ -155,10 +189,10 @@ pipeline {
     }
     stage("Build") {
       steps {
+        echo "selectedEnv: ${params.Environment}"
         echo "selectedEnvironment: ${environment}"
         echo "selectedPath: ${dpath}"
-        echo "selectdBuildTier: ${service.service_name}"
-        echo "selectdTag: ${service.release_tag}"
+        echo "selectdBuildTier: ${params.Host}"
       }
     }
     stage("DeployStaging") {

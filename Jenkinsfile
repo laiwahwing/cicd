@@ -60,7 +60,7 @@ properties([
     [
       $class: 'ChoiceParameter',
       choiceType: 'PT_SINGLE_SELECT',
-      description: 'select the env name from the dropdown list'
+      description: 'select the env name from the dropdown list',
       name: 'Environment',
       script: [
         $class: 'GroovyScript',

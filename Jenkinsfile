@@ -63,8 +63,11 @@ properties([
     [
       $class: 'ChoiceParameter',
       choiceType: 'PT_SINGLE_SELECT',
+      filterLength: 1,
+      filterable: true,
       description: 'select the env name from the dropdown list',
       name: 'Environment',
+      randomName: 'choice-parameter-5631314439613978',
       script: [
         $class: 'GroovyScript',
         fallbackScript: [
@@ -88,6 +91,7 @@ properties([
       filterable: true,
       name: 'Host',
       referencedParameters: 'Environment',
+      randomName: 'choice-parameter-5631314456178619', 
       script: [
         $class: 'GroovyScript',
         fallbackScript: [

@@ -43,14 +43,7 @@ def getDynamicParameter() {
   return html_to_be_rendered
 }
 
-/*
-def listSDKVersions() {
-  return {
-    def folders = sh(script:"ls /tmp", returnStdout:true)
-    return folders
-  }
-}
-*/
+
 
 
 
@@ -125,8 +118,16 @@ properties([
    ]
  ])
 ])
+/*
+def listSDKVersions() {
+  return {
+    def folders = sh(script:"ls /tmp", returnStdout:true)
+    return folders
+  }
+}
 
 def SDKVersions = listSDKVersions().call()
+choice(name: 'SDK', choices: SDKVersions, description="Select SDKVersions") */
 
 pipeline {
   agent any
@@ -139,7 +140,6 @@ pipeline {
             numToKeepStr: "50"
         )
   }
-    /* choice(name: 'SDK', choices: SDKVersions, description="Select SDKVersions") */
 
 
   environment {

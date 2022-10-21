@@ -46,10 +46,8 @@ def getDynamicParameter() {
 
 def listSDKVersions() {
   return {
-    node('Linux'){
-      def folders = sh(script:"ls /tmp", returnStdout:true)
-      return folders
-    }
+    def folders = sh(script:"ls /tmp", returnStdout:true)
+    return folders
   }
 }
 

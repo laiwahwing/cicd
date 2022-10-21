@@ -43,13 +43,14 @@ def getDynamicParameter() {
   return html_to_be_rendered
 }
 
-
+/*
 def listSDKVersions() {
   return {
     def folders = sh(script:"ls /tmp", returnStdout:true)
     return folders
   }
 }
+*/
 
 
 

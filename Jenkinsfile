@@ -51,8 +51,8 @@ properties([
   parameters([
     choice(description: 'Run what environment?', name: 'environment',choices: ['Staging', 'Prod']),
     choice(description: 'Run what package?', name: 'tier',choices: ['web', 'database', 'backend']),
-    booleanParam(defaultValue: true,description: '',name: 'RunBuild'),
-    booleanParam(defaultValue: true, description: 'Run deploy or not?',  name: 'RunDeploy'),
+    booleanParam(defaultValue: true, name: 'RunBuild', description: 'Run build or not',),
+    booleanParam(defaultValue: true, name: 'RunDeploy', description: 'Run deploy or not',  ),
     text(
       defaultValue: '''
       this is a multi-line 

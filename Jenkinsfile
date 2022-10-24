@@ -207,7 +207,7 @@ pipeline {
       }
       steps {
         buildName "#${BUILD_NUMBER}-${environment}-${dpath}"
-        buildDescription "Executed @ ${NODE_NAME}"
+        buildDescription "Executed @ ${NODE_NAME}\n${environment}-${dpath}"
         echo "selectedEnvironment: ${environment}"
         echo "Staging Build: selectedLinestring: ${params.multiline}"
       }

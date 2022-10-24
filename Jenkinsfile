@@ -160,7 +160,7 @@ pipeline {
       this is a multi-line 
       string parameter example
       ''',  name: 'multiline'
-    ),
+    )
     string(defaultValue: 'where\'s my pupet', name: 'gongzai', trim: true),
   }
 
@@ -198,7 +198,7 @@ pipeline {
         expression { BuildApp }
       }
       steps {
-        
+
       }
     }
     stage("DeployStaging") {

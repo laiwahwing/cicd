@@ -74,18 +74,18 @@ properties([
     [$class: 'CascadeChoiceParameter', 
         choiceType: 'PT_SINGLE_SELECT', 
         description: 'Select the AMI from the Dropdown List',
-        name: 'AMI List', 
+        name: 'AMIList', 
         referencedParameters: 'Env', 
         script: 
-            [$class: 'GroovyScript', 
+            [$class: 'GroovyScript',
             fallbackScript: [
-              classpath: [], 
-              sandbox: false, 
+              classpath: [],
+              sandbox: false,
               script: "return['Could not get Environment from Env Param']"
-              ], 
+              ],
             script: [
-              classpath: [], 
-              sandbox: false, 
+              classpath: [],
+              sandbox: false,
               script: '''
               if (Env.equals("dev")){
                 return["ami-sd2345sd", "ami-asdf245sdf", "ami-asdf3245sd"]
@@ -100,13 +100,13 @@ properties([
             ] 
         ]
     ],
-    [$class: 'DynamicReferenceParameter', 
-        choiceType: 'ET_ORDERED_LIST', 
+    [$class: 'DynamicReferenceParameter',
+        choiceType: 'ET_ORDERED_LIST',
         description: 'Select the  AMI based on the following information', 
-        name: 'ImageInformation', 
-        referencedParameters: 'Env', 
-        script: 
-          [$class: 'GroovyScript', 
+        name: 'ImageInformation',
+        referencedParameters: 'Env',
+        script:
+          [$class: 'GroovyScript',
           script: 'return["Could not get AMi Information"]', 
           script: [
             script: '''
@@ -198,7 +198,7 @@ pipeline {
         expression { BuildApp }
       }
       steps {
-        echo "${ImageInformation}"
+        echo "AMIList: ${AMIList}"
       }
     }
     stage("DeployStaging") {

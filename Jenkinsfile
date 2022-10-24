@@ -103,7 +103,7 @@ properties([
     [$class: 'DynamicReferenceParameter', 
         choiceType: 'ET_ORDERED_LIST', 
         description: 'Select the  AMI based on the following information', 
-        name: 'Image Information', 
+        name: 'ImageInformation', 
         referencedParameters: 'Env', 
         script: 
           [$class: 'GroovyScript', 
@@ -198,7 +198,7 @@ pipeline {
         expression { BuildApp }
       }
       steps {
-
+        echo "${ImageInformation}"
       }
     }
     stage("DeployStaging") {
@@ -206,7 +206,7 @@ pipeline {
         expression { RunDeploy }
       }
       steps {
-        buildName '#${BUILD_NUMBER}-${environment}-${dpath}'
+        buildName "#${BUILD_NUMBER}-${environment}-${dpath}"
         buildDescription "Executed @ ${NODE_NAME}"
         echo "selectedEnvironment: ${environment}"
         echo "Staging Build: selectedLinestring: ${params.multiline}"

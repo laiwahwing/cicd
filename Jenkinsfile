@@ -161,7 +161,7 @@ pipeline {
       string parameter example
       ''',  name: 'multiline'
     )
-    string(defaultValue: 'where\'s my pupet', name: 'gongzai', trim: true),
+    string(defaultValue: 'where\'s my pupet', name: 'gongzai', trim: true)
   }
 
   environment {

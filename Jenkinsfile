@@ -198,7 +198,7 @@ pipeline {
         expression { BuildApp }
       }
       steps {
-        echo "AMIList: ${AMIList}"
+        echo "AMIList: ${params.AMIList}"
       }
     }
     stage("DeployStaging") {
